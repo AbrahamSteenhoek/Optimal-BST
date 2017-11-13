@@ -24,27 +24,26 @@ Constructor: Matrix
     -everything initialized to 0 by default, initialized first main diagonal
 */
 Matrix::Matrix() {
-    //vector<pair<string, int> > input;
     string w;
     int f;
     // take in all the input
     while (cin >> w >> f) {
-        //input.push_back(make_pair(w, f));
         input[w] = f;
         names.push_back(w);
     }
     sort(names.begin(), names.end());
-    // grid is square of size inputlength x inputlength
+    // grid is square of size NxN
     N = input.size();
     grid = new int*[N];
+    runningSum = new int[N];
     int i = 0;
     for(auto k : input) {
         int freq = k.second;
         if(i == 0) {
-            runningSum.push_back(freq);
+            runningSum[0] = freq;
         }
         else
-            runningSum.push_back(runningSum[i - 1] + freq);
+            runningSum[i] = (runningSum[i - 1] + freq);
         
         grid[i] = new int[N]();
         grid[i][i] = freq;
@@ -89,9 +88,9 @@ void Matrix::populate() {
             min = std::min(min, grid[i][diag + i - 1]);
 
             if(i == 0)
-                min += runningSum.at(diag);
+                min += runningSum[diag];
             else
-                min += runningSum.at(diag + i) - runningSum.at(i - 1);
+                min += runningSum[diag + i] - runningSum[i - 1];
 
             grid[i][diag + i] = min;
             // print();
@@ -161,7 +160,9 @@ Deconstructor: ~Matrix
 */
 Matrix::~Matrix() {
     for(int i = 0; i < N; i++) {
-        delete grid[i];
+        delete [] grid[i];
     }
-    delete grid;
+    delete [] grid;
+    delete [] runningSum;
+    
 }

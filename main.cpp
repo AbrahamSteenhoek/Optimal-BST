@@ -21,9 +21,10 @@ using namespace std;
 using namespace std;
 
 int main() {
-    Matrix grid;
+    Matrix *grid = new Matrix();
     //grid.print();
 
-    cout << grid.findRoot() << " " << grid.searchCost() << endl;
+    cout << grid->findRoot() << " " << grid->searchCost() << endl;
+    delete grid;
     return 0;
 }
