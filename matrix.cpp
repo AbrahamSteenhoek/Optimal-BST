@@ -15,6 +15,7 @@ struct Comp {
     }
 
 };
+//
 
 /*
 Constructor: Matrix
