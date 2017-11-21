@@ -24,7 +24,7 @@ using namespace std;
 
 class Matrix {
     int **grid;
-    vector<int> runningSum;
+    int * runningSum;
     vector<string> names;
     map<string, int> input;
     int N;

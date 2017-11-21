@@ -49,18 +49,6 @@ Matrix::Matrix() {
         grid[i][i] = freq;
         i++;
     }
-    // for (size_t i = 0; i < N; i++) {
-    //     int freq = input.begin()->second;
-    //     input.erase(input.begin());
-    //     //input.erase(input.begin() + 0);//input.pop();
-    //     if(i == 0)
-    //         runningSum.push_back(freq);
-    //     else
-    //         runningSum.push_back(runningSum.at(i-1) + freq);
-    //     grid[i] = new int[N]();
-    //     grid[i][i] = freq;
-    // }
-    //cout << "size: " << N << endl;
     populate();
 }
 
@@ -78,10 +66,7 @@ void Matrix::populate() {
             int min = grid[i + 1][diag+i];
             
             for(size_t k = 1; k < diag; k++) {
-                //cout << "min: " << min;
-                //cout << " val: " << grid[i][i + k - 1] + grid[i + k + 1][diag + i];
                 min = std::min(min, grid[i][i + k - 1] + grid[i + k + 1][diag + i]);
-                //cout << " new min: " << endl;
             }
 
             // last value
@@ -162,7 +147,6 @@ Matrix::~Matrix() {
     for(int i = 0; i < N; i++) {
         delete [] grid[i];
     }
-    delete [] grid;
     delete [] runningSum;
-    
+    delete [] grid;
 }

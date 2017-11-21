@@ -22,7 +22,7 @@ using namespace std;
 
 int main() {
     Matrix *grid = new Matrix();
-    //grid.print();
+    grid->print();
 
     cout << grid->findRoot() << " " << grid->searchCost() << endl;
     delete grid;
